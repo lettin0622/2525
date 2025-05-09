@@ -48,7 +48,25 @@ function draw() {
           noStroke();
           circle(keypoint.x, keypoint.y, 16);
         }
+
+        // Draw lines connecting keypoints in groups
+        drawLines(hand.keypoints, 0, 4);  // Connect keypoints 0-4
+        drawLines(hand.keypoints, 5, 8);  // Connect keypoints 5-8
+        drawLines(hand.keypoints, 9, 12); // Connect keypoints 9-12
+        drawLines(hand.keypoints, 13, 16); // Connect keypoints 13-16
+        drawLines(hand.keypoints, 17, 20); // Connect keypoints 17-20
       }
     }
+  }
+}
+
+// Helper function to draw lines between consecutive keypoints in a range
+function drawLines(keypoints, start, end) {
+  stroke(0, 255, 0); // Set line color
+  strokeWeight(2); // Set line thickness
+  for (let i = start; i < end; i++) {
+    let kp1 = keypoints[i];
+    let kp2 = keypoints[i + 1];
+    line(kp1.x, kp1.y, kp2.x, kp2.y);
   }
 }
